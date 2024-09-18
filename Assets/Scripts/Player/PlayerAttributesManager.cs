@@ -19,10 +19,10 @@ public class PlayerAttributesManager
     }
 
     /// <summary>プレイヤーの現在の形態</summary>
-    private PlayerForm _currentForm = PlayerForm.Robot;
+    private static PlayerForm _currentForm = PlayerForm.Robot;
 
     /// <summary>プレイヤーの現在の状態</summary>
-    private PlayerState _currentState = PlayerState.Idle;
+    private static PlayerState _currentState = PlayerState.Idle;
 
     /// <summary>プレイヤーの現在の形態を取得する</summary>
     public PlayerForm GetPlayerForm() => _currentForm;
