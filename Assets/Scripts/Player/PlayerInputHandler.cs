@@ -68,7 +68,7 @@ public class PlayerInputHandler : MonoBehaviour
             _formHandler.SwitchPlayerForm();
 
             // 形態を切り替えるアニメーションを再生する
-            _animationHandler.PlaySwitchFormAnimation();
+            _animationHandler.PlaySwitchAnimation();
         } 
     }
 }
