@@ -31,10 +31,10 @@ public class PlayerMoveHandler : MonoBehaviour
     {
         switch(_formHandler.GetPlayerForm())
         {
-            case PlayerFormHandler.PlayerForm.Robot:
+            case PlayerForm.Robot:
                  transform.Translate(moveDirection * _robotMoveSpeed * Time.deltaTime); break;
             
-            case PlayerFormHandler.PlayerForm.Jett:
+            case PlayerForm.Jett:
                  transform.Translate(moveDirection * _jettMoveSpeed * Time.deltaTime); break;   
         }
     }

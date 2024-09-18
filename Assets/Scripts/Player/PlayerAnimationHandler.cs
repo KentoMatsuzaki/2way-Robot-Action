@@ -18,11 +18,11 @@ public class PlayerAnimationHandler : MonoBehaviour
     /// <summary>形態を切り替えるアニメーションを再生する</summary>
     public void PlaySwitchFormAnimation()
     {
-        if (_formHandler.GetPlayerForm() == PlayerFormHandler.PlayerForm.Robot)
+        if (_formHandler.GetPlayerForm() == PlayerForm.Robot)
         {
             _animator.Play("Robot Form");
         }
-        else if (_formHandler.GetPlayerForm() == PlayerFormHandler.PlayerForm.Jett)
+        else if (_formHandler.GetPlayerForm() == PlayerForm.Jett)
         {
             _animator.Play("Jett Form");
         }
