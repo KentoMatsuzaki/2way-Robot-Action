@@ -1,13 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 /// <summary>プレイヤーのアニメーションを管理するクラス</summary>
 public class PlayerAnimationHandler : MonoBehaviour
 {
-    /// <summary>プレイヤーのアニメーターコントローラー</summary>
-    Animator _animator;
-
-    /// <summary>プレイヤーの形態管理</summary>
-    PlayerFormHandler _formHandler;
+    private Animator _animator;
+    private PlayerFormHandler _formHandler;
 
     private void Awake()
     {
@@ -16,30 +14,66 @@ public class PlayerAnimationHandler : MonoBehaviour
     }
 
     //-------------------------------------------------------------------------------
-    // 形態を切り替えるアニメーション
+    // 汎用処理
+    //-------------------------------------------------------------------------------
+
+    /// <summary>アニメーションを再生する汎用メソッド</summary>
+    /// <param name="type">再生するアニメーションの種類</param>
+    private void PlayAnimation(PlayerAnimationType type)
+    {
+        _animator.Play($"{_formHandler.GetCurrentForm().ToString()}" + " " + $"{type.ToString()}");
+    }
+
+    /// <summary>Float型のパラメーターを設定する汎用メソッド（減衰なし）</summary>
+    /// <param name="param">設定するパラメーター</param>
+    private void SetFloatParameter(PlayerAnimationParameter param, float value)
+    {
+        _animator.SetFloat(param.ToString(), value);
+    }
+
+    /// <summary>Float型のパラメーターを設定する汎用メソッド（減衰あり）</summary>
+    /// <param name="param">設定するパラメーター</param>
+    private void SetFloatParameterWithDamp(PlayerAnimationParameter param, float value, float damp)
+    {
+        _animator.SetFloat(param.ToString(), value, damp, Time.deltaTime);
+    }
+
+    //-------------------------------------------------------------------------------
+    // 形態を切り替えるアニメーションの再生に関する処理
     //-------------------------------------------------------------------------------
 
     /// <summary>形態を切り替えるアニメーションを再生する</summary>
     public void PlaySwitchAnimation()
     {
-        _animator.Play(IsRobot() ? PlayerAnimation.Jett.ToString() : PlayerAnimation.Robot.ToString());
+        
     }
 
     //-------------------------------------------------------------------------------
-    // アニメーションの再生に関する処理
+    // 無操作状態アニメーションの再生に関する処理
     //-------------------------------------------------------------------------------
 
-    /// <summary>プレイヤーが歩行形態であるか</summary>
-    private bool IsRobot()
+    /// <summary>アイドルアニメーションを再生する</summary>
+    public void PlayIdleAnimation()
     {
-        if (_formHandler.GetPlayerForm() == PlayerForm.Robot) return true;
-        else return false;
+        
     }
 
-    /// <summary>プレイヤーが飛行形態であるか</summary>
-    private bool IsJett()
+    //-------------------------------------------------------------------------------
+    // 移動アニメーションの再生に関する処理
+    //-------------------------------------------------------------------------------
+
+    /// <summary>移動アニメーションを再生する</summary>
+    public void PlayMoveAnimation()
     {
-        if (_formHandler.GetPlayerForm() == PlayerForm.Jett) return true;
-        else return false;
+        PlayAnimation(PlayerAnimationType.Move);
+    }
+
+    /// <summary>移動に関するパラメーターを設定する</summary>
+    /// <param name="moveInput">移動の入力値</param>
+    public void SetMoveParameter(Vector2 moveInput)
+    {
+        SetFloatParameterWithDamp(PlayerAnimationParameter.InputX, moveInput.x, 0.5f);
+        SetFloatParameterWithDamp(PlayerAnimationParameter.InputY, moveInput.y, 0.5f);
+        SetFloatParameter(PlayerAnimationParameter.Speed, moveInput.sqrMagnitude);
     }
 }
