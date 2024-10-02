@@ -3,22 +3,20 @@ using UnityEngine;
 /// <summary>プレイヤーの移動処理を管理するクラス</summary>
 public class PlayerMoveHandler : MonoBehaviour
 {
-    /// <summary>歩行形態の移動速度</summary>
-    [SerializeField, Header("歩行形態の移動速度")] private float _robotMoveSpeed;
+    /// <summary>ロボット形態の移動速度</summary>
+    [SerializeField, Header("ロボット形態の移動速度")] private float _robotMoveSpeed;
 
-    [SerializeField, Header("飛行形態の移動速度")] private float _jettMoveSpeed;
+    /// <summary>ジェット形態の移動速度</summary>
+    [SerializeField, Header("ジェット形態の移動速度")] private float _jettMoveSpeed;
 
     /// <summary>移動方向</summary>
-    private Vector3 moveDirection;
+    private Vector3 moveDirection = Vector3.zero;
 
     private PlayerFormHandler _formHandler;
-
-    private PlayerStateHandler _stateHandler;
 
     private void Awake()
     {
         _formHandler = new PlayerFormHandler();
-        _stateHandler = new PlayerStateHandler();
     }
 
     private void Update()
@@ -29,7 +27,7 @@ public class PlayerMoveHandler : MonoBehaviour
     /// <summary>移動処理</summary>
     private void Move()
     {
-        switch(_formHandler.GetPlayerForm())
+        switch(_formHandler.GetCurrentForm())
         {
             case PlayerForm.Robot:
                  transform.Translate(moveDirection * _robotMoveSpeed * Time.deltaTime); break;
@@ -43,6 +41,6 @@ public class PlayerMoveHandler : MonoBehaviour
     /// <param name="moveInput">移動の入力値</param>
     public void SetMoveDirection(Vector2 moveInput)
     {
-        moveDirection = new Vector3(moveInput.x, 0, moveInput.y);
+        moveDirection = new Vector3(moveInput.x, 0, moveInput.y).normalized;
     }
 }
