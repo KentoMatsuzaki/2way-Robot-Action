@@ -24,7 +24,7 @@ public class PlayerInputHandler : MonoBehaviour
         _moveHandler.SetMoveDirection(_moveInput);
 
         // アニメーションパラメーターも毎フレーム更新する
-        _animationHandler.SetMoveParameter(_moveInput);
+        _animationHandler.SetMovementParameters(_moveInput);
     }
 
     /// <summary>移動アクションが入力された際に呼ばれるイベント</summary>
@@ -51,7 +51,7 @@ public class PlayerInputHandler : MonoBehaviour
         // ボタンが押された瞬間だけイベントを呼び出す
         if (context.performed)
         {
-
+            _animationHandler.ActivateMeleeTrigger();
         }
     }
 
