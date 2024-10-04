@@ -45,8 +45,8 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    /// <summary>攻撃アクション（左）が入力された際に呼ばれるイベント</summary>
-    public void OnAttackLeft(InputAction.CallbackContext context)
+    /// <summary>近接攻撃アクションが入力された際に呼ばれるイベント</summary>
+    public void OnMeleeAttack(InputAction.CallbackContext context)
     {
         // ボタンが押された瞬間だけイベントを呼び出す
         if (context.performed)
@@ -55,13 +55,19 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    /// <summary>攻撃アクション（右）が入力された際に呼ばれるイベント</summary>
-    public void OnAttackRight(InputAction.CallbackContext context)
+    /// <summary>遠距離攻撃アクションが入力された際に呼ばれるイベント</summary>
+    public void OnRangedAttack(InputAction.CallbackContext context)
     {
         // ボタンが押された瞬間だけイベントを呼び出す
         if (context.performed)
         {
+            _animationHandler.SetRangedFlagTrue();
+        }
 
+        // ボタンが離された瞬間だけイベントを呼び出す
+        else if (context.canceled)
+        {
+            _animationHandler.SetRangedFlagFalse();
         }
     }
 
