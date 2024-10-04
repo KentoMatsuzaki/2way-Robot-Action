@@ -45,6 +45,20 @@ public class PlayerAnimationHandler : MonoBehaviour
         _animator.SetTrigger($"{_formHandler.GetCurrentForm().ToString()}" + " " + $"{param.ToString()}");
     }
 
+    /// <summary>現在の形態に沿ってフラグをtrueにする汎用メソッド</summary>
+    /// <param name="param">trueにするフラグ</param>
+    private void SetFlagTrue(PlayerAnimationParameter param)
+    {
+        _animator.SetBool($"{_formHandler.GetCurrentForm().ToString()}" + " " + $"{param.ToString()}", true);
+    }
+
+    /// <summary>現在の形態に沿ってフラグをfalseにする汎用メソッド</summary>
+    /// <param name="param">falseにするフラグ</param>
+    private void SetFlagFalse(PlayerAnimationParameter param)
+    {
+        _animator.SetBool($"{_formHandler.GetCurrentForm().ToString()}" + " " + $"{param.ToString()}", false);
+    }
+
     //-------------------------------------------------------------------------------
     // 形態を切り替えるアニメーションの再生に関する処理
     //-------------------------------------------------------------------------------
@@ -88,8 +102,21 @@ public class PlayerAnimationHandler : MonoBehaviour
     // 攻撃アニメーションの再生に関する処理
     //-------------------------------------------------------------------------------
 
+    /// <summary>近接攻撃のトリガーを有効化する</summary>
     public void ActivateMeleeTrigger()
     {
         ActivateTrigger(PlayerAnimationParameter.Melee);
+    }
+
+    /// <summary>遠距離攻撃のフラグをtrueにする</summary>
+    public void SetRangedFlagTrue()
+    {
+        SetFlagTrue(PlayerAnimationParameter.Ranged);
+    }
+
+    /// <summary>遠距離攻撃のフラグをfalseにする</summary>
+    public void SetRangedFlagFalse()
+    {
+        SetFlagFalse(PlayerAnimationParameter.Ranged);
     }
 }
