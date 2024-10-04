@@ -38,6 +38,13 @@ public class PlayerAnimationHandler : MonoBehaviour
         _animator.SetFloat(param.ToString(), value, damp, Time.deltaTime);
     }
 
+    /// <summary>現在の形態に沿ってトリガーを有効化する汎用メソッド</summary>
+    /// <param name="param">有効化するトリガー</param>
+    private void ActivateTrigger(PlayerAnimationParameter param)
+    {
+        _animator.SetTrigger($"{_formHandler.GetCurrentForm().ToString()}" + " " + $"{param.ToString()}");
+    }
+
     //-------------------------------------------------------------------------------
     // 形態を切り替えるアニメーションの再生に関する処理
     //-------------------------------------------------------------------------------
@@ -45,7 +52,7 @@ public class PlayerAnimationHandler : MonoBehaviour
     /// <summary>形態を切り替えるアニメーションを再生する</summary>
     public void PlaySwitchAnimation()
     {
-        
+        PlayAnimation(PlayerAnimationType.Switch);
     }
 
     //-------------------------------------------------------------------------------
@@ -70,10 +77,19 @@ public class PlayerAnimationHandler : MonoBehaviour
 
     /// <summary>移動に関するパラメーターを設定する</summary>
     /// <param name="moveInput">移動の入力値</param>
-    public void SetMoveParameter(Vector2 moveInput)
+    public void SetMovementParameters(Vector2 moveInput)
     {
         SetFloatParameterWithDamp(PlayerAnimationParameter.InputX, moveInput.x, 0.5f);
         SetFloatParameterWithDamp(PlayerAnimationParameter.InputY, moveInput.y, 0.5f);
         SetFloatParameter(PlayerAnimationParameter.Speed, moveInput.sqrMagnitude);
+    }
+
+    //-------------------------------------------------------------------------------
+    // 攻撃アニメーションの再生に関する処理
+    //-------------------------------------------------------------------------------
+
+    public void ActivateMeleeTrigger()
+    {
+        ActivateTrigger(PlayerAnimationParameter.Melee);
     }
 }
