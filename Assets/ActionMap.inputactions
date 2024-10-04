@@ -15,7 +15,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Attack L",
+                    "name": "Melee Attack",
                     "type": "Button",
                     "id": "ec7e40fd-4f6d-4704-8e03-c3a4e21f4814",
                     "expectedControlType": "Button",
@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Attack R",
+                    "name": "Ranged Attack",
                     "type": "Button",
                     "id": "7afef77f-0a20-4b79-b6a7-bdadc7436455",
                     "expectedControlType": "Button",
@@ -105,7 +105,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Attack L",
+                    "action": "Melee Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -116,7 +116,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Attack R",
+                    "action": "Ranged Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
