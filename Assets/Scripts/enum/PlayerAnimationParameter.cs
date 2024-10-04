@@ -5,4 +5,6 @@ public enum PlayerAnimationParameter
     InputX, // ‰¡•ûŒü‚Ì“ü—Í’l
     InputY, // c•ûŒü‚Ì“ü—Í’l
     Speed, // ˆÚ“®‘¬“x
+    Melee, // ‹ßÚUŒ‚
+    Ranged // ‰“‹——£UŒ‚
 }
