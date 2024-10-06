@@ -27,4 +27,10 @@ public class ThirdPersonCamera : MonoBehaviour
 
     /// <summary>カメラのオフセット</summary>
     private Vector3 _offset;
+
+    private void Start()
+    {
+        // カメラの位置を初期設定する
+        _offset = new Vector3(0, 3f, -_distance);
+    }
 }
