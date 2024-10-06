@@ -5,7 +5,7 @@ using UnityEngine;
 public class ThirdPersonCamera : MonoBehaviour
 {
     /// <summary>プレイヤーの位置</summary>
-    [SerializeField, Header("プレイヤーの位置")] private Transform _playerPos;
+    [SerializeField, Header("プレイヤーの位置")] private Transform _player;
 
     /// <summary>プレイヤーとの距離</summary>
     [SerializeField, Header("プレイヤーとの距離")] private float _distance;
@@ -32,5 +32,24 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         // カメラの位置を初期設定する
         _offset = new Vector3(0, 3f, -_distance);
+    }
+
+    private void Update()
+    {
+        // マウスの入力を受け取る
+        _currentX -= Input.GetAxis("Mouse X") * _sensitivity;
+        _currentY -= Input.GetAxis("Mouse Y") * _sensitivity;
+
+        // Y軸の回転角度を制限する
+        _currentY = Mathf.Clamp(_currentY, _minAngleY, _maxAngleY);
+    }
+
+    private void LateUpdate()
+    {
+        Quaternion rotation = Quaternion.Euler(_currentY, _currentX, 0);
+        Vector3 targetPosition = _player.position + rotation * _offset;
+
+        transform.position = targetPosition;
+        transform.LookAt(_player.position);
     }
 }
