@@ -31,7 +31,7 @@ public class ThirdPersonCamera : MonoBehaviour
     private void Start()
     {
         // ƒJƒƒ‰‚ÌˆÊ’u‚ğ‰Šúİ’è‚·‚é
-        _offset = new Vector3(0, 3f, -_distance);
+        _offset = new Vector3(0, 2.5f, -_distance);
     }
 
     private void Update()
