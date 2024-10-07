@@ -50,6 +50,6 @@ public class ThirdPersonCamera : MonoBehaviour
         Vector3 targetPosition = _player.position + rotation * _offset;
 
         transform.position = targetPosition;
-        transform.LookAt(_player.position);
+        transform.LookAt(new Vector3(_player.position.x, _player.position.y + 1f, _player.position.z));
     }
 }
