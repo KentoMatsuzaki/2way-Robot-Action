@@ -17,7 +17,7 @@ public class PlayerAnimationHandler : MonoBehaviour
     // 汎用処理
     //-------------------------------------------------------------------------------
 
-    /// <summary>アニメーションを再生する汎用メソッド</summary>
+    /// <summary>現在の形態に沿ってアニメーションを再生する汎用メソッド</summary>
     /// <param name="type">再生するアニメーションの種類</param>
     private void PlayAnimation(PlayerAnimationType type)
     {
@@ -105,6 +105,7 @@ public class PlayerAnimationHandler : MonoBehaviour
     /// <summary>近接攻撃のトリガーを有効化する</summary>
     public void ActivateMeleeTrigger()
     {
+        if (_formHandler.GetCurrentForm() != PlayerForm.Robot) return;
         ActivateTrigger(PlayerAnimationParameter.Melee);
     }
 

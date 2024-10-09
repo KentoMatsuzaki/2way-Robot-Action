@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-/// <summary>入力時に呼ばれるイベントを管理するクラス</summary>
+/// <summary>プレイヤーの入力を制御するクラス</summary>
 public class PlayerInputHandler : MonoBehaviour
 {
     PlayerFormHandler _formHandler;
